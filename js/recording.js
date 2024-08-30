@@ -1,7 +1,12 @@
 import { onChildAdded } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
 
-export default function recording(dbRef, recordListALL, recordListMinus, recordListPlus) {  
+export default function recording(dbRef, recordListALL, recordListMinus, recordListPlus) {
     const clearButtonHtml = '<button class="clear-button"><img src="../images/icon-clear.svg" width="16" height="16" alt="削除ボタン"></button>';
+
+    // 既存のアイテムをクリア
+    recordListALL.innerHTML = '';
+    recordListPlus.innerHTML = '';
+    recordListMinus.innerHTML = '';
 
     onChildAdded(dbRef, (snapshot) => {
         const recordItem = snapshot.val();

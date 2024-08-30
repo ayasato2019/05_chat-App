@@ -69,6 +69,7 @@ recordButton.addEventListener('click', () => {
     const newPostRef = push(dbRef);
     set(newPostRef, recordItem);
 
+    // フロントに新しいレコードを表示
     recording(dbRef, recordListALL, recordListMinus, recordListPlus);
 
     recordDate.value = '';
