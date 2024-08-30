@@ -139,6 +139,19 @@ canvas {
     flex-direction: row;
 }
 
+.record-item span {
+    padding-left: 8px;
+}
+
+.item-title {
+    min-width: 5em;
+}
+
+.item-price {
+    min-width: 10em;
+    text-align: right;
+}
+
 .record-plus {
     font-weight: 700;
 }
