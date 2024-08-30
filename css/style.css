@@ -170,12 +170,15 @@ canvas {
 }
 
 .clear-button {
+    display: inline-block;
+    margin-right: 8px;
     margin-left: 32px;
     line-height: 1;
     border: 0;
     background-color: transparent;
     cursor: pointer;
 }
+
 .clear-button:hover {
     opacity: .5;
 }
