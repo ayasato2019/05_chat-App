@@ -1,0 +1,261 @@
+:root {
+	--color-base: #3D2E41;
+	--color-primary: rgba(188,178,201,0.7);
+	--color-gray: #C3C2CC;
+}
+
+* , *::before, *::after {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    color: var(--color-base);
+	font-family: "Noto Sans JP", system-ui;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.inner {
+    margin-inline: auto;
+    width: min(768px, 96%);
+}
+
+.header {
+    background-color: var(--color-primary);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+
+.nav-button {
+    position: relative;
+    width: 35px;
+    height: 25px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+
+.nav-button::before,
+.nav-button::after {
+    content: '';
+    width: 100%;
+    height: 4px;
+    background-color: #333;
+    transition: all 0.3s ease;
+}
+
+.nav-button::before {
+    position: absolute;
+    top: 0;
+}
+
+.nav-button::after {
+    position: absolute;
+    bottom: 0;
+}
+
+
+/* 棒グラフ */
+canvas {
+    width: 100%;
+}
+.mainview {
+    margin: 64px auto;
+}
+
+/* switch */
+.switch {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1px;
+}
+
+.switch > label {
+    flex: 1 1;
+    order: -1;
+    opacity: .5;
+    min-width: 70px;
+    padding: .6em 1em;
+    border-radius: 5px 5px 0 0;
+    background-color: #bcb2c9;
+    color: #fff;
+    font-size: .9em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.switch > label:hover {
+    opacity: .8;
+}
+
+.switch input {
+    display: none;
+}
+
+.switch > div {
+    overflow: auto;
+    display: none;
+    height: auto;
+    max-height: 400px;
+    width: 100%;
+    padding: 1.5em 1em;
+    background-color: #fff;
+}
+
+.switch label:has(:checked) {
+    opacity: 1;
+}
+
+.switch label:has(:checked) + div {
+    display: block;
+    background-color: rgba(188, 178, 201, 1);
+}
+
+/* display area */
+.display-area {
+    list-style: "";
+}
+
+.display-area li {
+    display: flex;
+    flex-direction: row;
+}
+
+.record-plus {
+    font-weight: 700;
+}
+
+.record-minus {
+    color: #762C61;
+}
+
+/* input area */
+.input-area {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0; 
+    font-size: 16px;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.input-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.clear-button {
+    margin-left: 32px;
+    line-height: 1;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+.clear-button:hover {
+    opacity: .5;
+}
+
+.selectbox-type {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.selectbox-type::after {
+    position: absolute;
+    right: 15px;
+    width: 10px;
+    height: 7px;
+    background-color: #5d4e61;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    content: '';
+    pointer-events: none;
+}
+
+.selectbox-type select {
+    appearance: none;
+    min-width: 230px;
+    height: 2.8em;
+    padding: .4em calc(.8em + 30px) .4em .8em;
+    border: 1px solid #bbb2c9;
+    border-radius: 3px;
+    background-color: #fff;
+    color: #3d2e41;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.input-area input {
+    padding: 8px 16px 8px 4px;
+    border-radius: 4px;
+    border: 1px solid rgba(188, 178, 201, .5);
+}
+
+.input-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 120px;
+    margin: 0 auto;
+    padding: 8px 4px;
+    border: 1px solid #bcb2c9;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #412E3F;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.input-button::after {
+    position: absolute;
+    right: 8px;
+    transform: translateY(-50%);
+    transform-origin: left;
+    width: 16px;
+    height: .5em;
+    background-color: #bcb2c9;
+    clip-path: polygon(0 100%, 100% 100%, 70% 40%, 70% 90%, 0% 90%);
+    content: '';
+    transition: transform .3s;
+}
+
+.input-button:hover::after {
+    transform: translateY(-50%) scaleX(1.2);
+}
+
+/* FIRE　BASE */
+.user-name {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+/* footer */
+.footer .inner {
+    text-align: center;
+}

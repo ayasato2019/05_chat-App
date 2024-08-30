@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="icon" href="images/favicon.ico">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Limelight&family=Noto+Sans+JP&family=RocknRoll+One&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+	<title>みんなの家計簿</title>
+</head>
+<body>
+<header class="header">
+		<div class="inner">
+			<h1>
+				<a href="./">みんなの家計簿</a>
+			</h1>
+		</div>
+	</header>
+
+	<main class="main">
+		<div class="inner">
+			<section class="mainview">
+				<h2 class="chart-title">支出割合</h2>
+				<canvas id="pieChart"></canvas>
+			</section>
+
+			<div class="switch">
+				<label class="switch-item">
+					<input type="radio" name="switch" checked>
+					全て
+				</label>
+				<div>
+					<ul id="all-area" class="display-area">
+					</ul>
+				</div>
+			
+				<label class="switch-item">
+					<input type="radio" name="switch">
+					支出
+				</label>
+				<div>
+					<ul id="minus-area" class="display-area">
+					</ul>
+				</div>
+			
+				<label class="switch-item">
+					<input type="radio" name="switch">
+					収入
+				</label>
+				<div>
+					<ul id="plus-area" class="display-area">
+					</ul>
+				</div>
+			</div>
+
+			<div class="input-area">
+				<p><label>記入者<input type="text" name="user-name" id="user-name" class="user-name"></label></p>
+				<div class="w-full">
+					<label class="selectbox-type">
+						<select id="record-type">
+							<option value="plus">収入</option>
+							<option value="minus">支出</option>
+						</select>
+					</label>
+				</div>
+				<p><input type="date" name="record-date" class="record-date" id="record-date"  placeholder="項目を入力"></p>
+				<p><input type="text" name="record-title" id="record-title" class="record-title"></p>
+				<p><input type="number" name="record-price" id="record-price" class="record-price" placeholder="1000円">&nbsp;円</p>
+
+				<div class="input-buttons">
+					<button id="record" class="input-button">登録</button>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer class="footer">
+		<p class="inner">©2024 ayasato</p>
+	</footer>
+
+	<script type="module" src="./js/index.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+</body>
+</html>
