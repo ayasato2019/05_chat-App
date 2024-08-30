@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
 import { getDatabase, ref, push, set, remove, onChildAdded } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
 import recording from "./recording.js";
+import makeChart from "./makeChart.js";
 
 // Firebaseの初期化
 const firebaseConfig = {
@@ -27,28 +28,35 @@ const recordListPlus = document.getElementById('plus-area');
 
 // Chart の初期化
 let labels = ["サンプルA", "サンプルB", "サンプルC"];
-let dataList = ["47", "25", "10"];
-let isFirstClick = true;
+let dataList = [47, 25, 10]; // 数値の配列に修正
 
 var ctx = document.getElementById("pieChart").getContext("2d");
-var myPieChart = new Chart(ctx, {
-    type: 'pie',
+var myLineChart = new Chart(ctx, {
+    type: 'line',
     data: {
-        labels: labels,
-        datasets: [{
-            backgroundColor: [
-                "#6b5991",
-                "#A6639F",
-                "#EEC1E9",
-                "#8B6E88",
-                "#D2A1CD",
-                "#c270af",
-                "#AD84A9",
-                "#bbb2c9"
-            ],
-            data: dataList,
-        }]
+        labels: labels, // ラベルの設定
+        datasets: [
+            {
+                label: "お金の増減表",
+                data: dataList, // データの設定
+                tension: 0.1, // 曲線の緩やかさを設定
+                fill: true, // 塗りつぶし設定
+                borderWidth: 2, // ボーダーの幅を設定
+                borderColor: 'rgba(75, 192, 192, 1)', // ボーダーの色
+                backgroundColor: 'rgba(75, 192, 192, 0.2)' // 背景の色
+            }
+        ]
     },
+    options: {
+        scales: {
+            x: {
+                beginAtZero: true // x 軸の設定
+            },
+            y: {
+                beginAtZero: true // y 軸の設定
+            }
+        }
+    }
 });
 
 // `recordButton` のクリックイベントリスナー
@@ -71,6 +79,7 @@ recordButton.addEventListener('click', () => {
 
     // フロントに新しいレコードを表示
     recording(dbRef, recordListALL, recordListMinus, recordListPlus);
+    makeChart(dbRef);
 
     recordDate.value = '';
     recordTitle.value = '';
