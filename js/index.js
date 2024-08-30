@@ -1,9 +1,6 @@
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-// import { getDatabase, ref, push, set, remove, onChildAdded } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getDatabase, ref, push, set, remove, onChildAdded } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
-import recording from "./recording.js";  // `recording` 関数のインポート
-
+import { getDatabase, ref, push, set, remove, onChildAdded, onChildRemoved, updadte }  from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+import recording from "./recording.js";
 // Firebaseの初期化
 const firebaseConfig = {
     apiKey: "AIzaSyCgbypcDaNpYPBd8gg44QwDzrMyvBbz8gw",
