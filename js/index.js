@@ -1,18 +1,9 @@
-// index.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
 import { getDatabase, ref, push, set, remove, onChildAdded, onValue } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
-import recording from "./recording.js";
 import loadList from "./load.js";
+import firebaseConfig from "./firebaseconfig.js";  // デフォルトエクスポートとしてインポート
 
 // Firebaseの初期化
-const firebaseConfig = {
-    apiKey: "AIzaSyCgbypcDaNpYPBd8gg44QwDzrMyvBbz8gw",
-    authDomain: "household-log.firebaseapp.com",
-    projectId: "household-log",
-    storageBucket: "household-log.appspot.com",
-    messagingSenderId: "445619022902",
-    appId: "1:445619022902:web:b994fce2eb3bb3e9e6bc97"
-};
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
@@ -26,6 +17,7 @@ const recordDate = document.getElementById('record-date');
 const recordTitle = document.getElementById('record-title');
 const recordPrice = document.getElementById('record-price');
 const recordType = document.getElementById('record-type');
+const recordMemo = document.getElementById('record-memo');
 const recordListALL = document.getElementById('all-area');
 const recordListMinus = document.getElementById('minus-area');
 const recordListPlus = document.getElementById('plus-area');
@@ -35,11 +27,10 @@ window.addEventListener('load', () => {
     loadList(dbRef, recordListALL, recordListMinus, recordListPlus, clearButtonHtml);
 });
 
+// optionのテキストをvalueに設定する
 document.addEventListener('DOMContentLoaded', () => {
     const selectElement = document.getElementById('user-name');
-
     Array.from(selectElement.options).forEach(option => {
-        // optionのテキストをvalueに設定する
         option.value = option.text;
     });
 });
@@ -51,7 +42,8 @@ recordButton.addEventListener('click', () => {
         name: recordUser.value,
         title: recordTitle.value,
         price: recordPrice.value,
-        type: recordType.value
+        type: recordType.value,
+        memo: recordMemo.value,
     };
 
     if (!recordItem.data || !recordItem.name || !recordItem.title || !recordItem.price || !recordItem.type) {
@@ -75,6 +67,7 @@ recordButton.addEventListener('click', () => {
     recordTitle.value = '';
     recordPrice.value = '';
     recordType.value = '';
+    recordMemo.value = '';
 });
 
 // グローバルなクリックリスナーを追加

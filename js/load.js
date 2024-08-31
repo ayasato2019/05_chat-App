@@ -21,10 +21,12 @@ export default function loadList(dbRef, recordListALL, recordListMinus, recordLi
 
             // ソートされたデータをループして表示
             for (const [key, recordItem] of entries) {
+                const name = recordItem.name; 
                 const date = recordItem.data; 
                 const title = recordItem.title;
                 const price = recordItem.price;
                 const type = recordItem.type;
+                const memo = recordItem.memo;
 
                 const newItem = document.createElement('li');
                 const newItemType = document.createElement('li');
@@ -39,8 +41,8 @@ export default function loadList(dbRef, recordListALL, recordListMinus, recordLi
 
                 const jpType = type === "plus" ? "収入" : "支出";
 
-                newItem.innerHTML = `${clearButtonHtml}<span contenteditable="true" class="id-${key}-update">${date}</span><span contenteditable="true" class="item-title id-${key}-update">${title}</span><span contenteditable="true" class="item-price id-${key}-update">${price}円</span>`;
-                newItemType.innerHTML = `${clearButtonHtml} ${jpType} : <span contenteditable="true" class="id-${key}-update">${date}</span><span contenteditable="true" class="item-title id-${key}-update">${title}</span><span contenteditable="true" class="item-price id-${key}-update">${price}円</span>`;
+                newItem.innerHTML = `${clearButtonHtml}<span class="item-user">${name}</span><span contenteditable="true" class="id-${key}-update">${date}</span><span contenteditable="true" class="item-title id-${key}-update">${title}</span><span contenteditable="true" class="item-price id-${key}-update">${price}円</span><span class="tooltip">${memo}</span>`;
+                newItemType.innerHTML = `${clearButtonHtml} <span class="type type-${type}">${jpType}</span><span class="item-user">${name}</span><span contenteditable="true" class="id-${key}-update">${date}</span><span contenteditable="true" class="item-title id-${key}-update">${title}</span><span contenteditable="true" class="item-price id-${key}-update">${price}円</span><span class="tooltip">${memo}</span>`;
 
                 if (type === "plus") {
                     recordListPlus.appendChild(newItem);

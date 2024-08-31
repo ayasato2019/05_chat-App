@@ -35,7 +35,13 @@
 							<option value="user1">家族１</option>
 							<option value="user2">家族2</option>
 							<option value="user3">家族3</option>
+							<option value="add-new">新規追加</option>
 						</select>
+
+						<div id="new-option-container" style="display: none;">
+							<input type="text" id="new-option-text" placeholder="新しい選択肢の名前">
+							<button id="add-option">追加</button>
+						</div>
 					</label>
 				</div>
 				<div class="w-full">
@@ -49,7 +55,7 @@
 				<p><input type="date" name="record-date" class="record-date" id="record-date"  placeholder="項目を入力"></p>
 				<p><input type="text" name="record-title" id="record-title" class="record-title"></p>
 				<p><input type="number" name="record-price" id="record-price" class="record-price" placeholder="1000円">&nbsp;円</p>
-
+				<p class="w-full"><input type="tesxt" name="record-memo" id="record-memo" class="record-memo" placeholder="メモ"></p>
 				<div class="input-buttons">
 					<button id="record" class="input-button">登録</button>
 				</div>
