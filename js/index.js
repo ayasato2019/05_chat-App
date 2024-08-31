@@ -21,6 +21,7 @@ const dbRef = ref(db, "household-log");
 
 // HTML要素
 const recordButton = document.getElementById('record');
+const recordUser = document.getElementById('user-name');
 const recordDate = document.getElementById('record-date');
 const recordTitle = document.getElementById('record-title');
 const recordPrice = document.getElementById('record-price');
@@ -34,11 +35,20 @@ window.addEventListener('load', () => {
     loadList(dbRef, recordListALL, recordListMinus, recordListPlus, clearButtonHtml);
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const selectElement = document.getElementById('user-name');
+
+    Array.from(selectElement.options).forEach(option => {
+        // optionのテキストをvalueに設定する
+        option.value = option.text;
+    });
+});
+
 // `recordButton` のクリックイベントリスナー
 recordButton.addEventListener('click', () => {
     var recordItem = {
         data: recordDate.value,
-        name: document.querySelector("#user-name").value,
+        name: recordUser.value,
         title: recordTitle.value,
         price: recordPrice.value,
         type: recordType.value
