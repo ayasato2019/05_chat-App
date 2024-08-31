@@ -138,6 +138,10 @@ canvas {
     flex-direction: row;
 }
 
+.display-area li:not(:last-child) {
+    margin-bottom: 16px;
+}
+
 .record-item span {
     padding-left: 8px;
 }
