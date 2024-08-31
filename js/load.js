@@ -1,17 +1,26 @@
-// load.js
 import { onValue } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
 
 export default function loadList(dbRef, recordListALL, recordListMinus, recordListPlus, clearButtonHtml) {
     onValue(dbRef, (snapshot) => {
         const data = snapshot.val();
         if (data) {
+            // データを日付でソートするためにエントリを配列に変換
+            const entries = Object.entries(data);
+
+            // 日付でソート
+            entries.sort((a, b) => {
+                const dateA = new Date(a[1].data);
+                const dateB = new Date(b[1].data);
+                return dateA - dateB; // 古い順
+            });
+
             // 既存のデータをクリア
             recordListALL.innerHTML = '';
             recordListPlus.innerHTML = '';
             recordListMinus.innerHTML = '';
 
-            // データをループして表示
-            for (const [key, recordItem] of Object.entries(data)) {
+            // ソートされたデータをループして表示
+            for (const [key, recordItem] of entries) {
                 const date = recordItem.data; 
                 const title = recordItem.title;
                 const price = recordItem.price;
