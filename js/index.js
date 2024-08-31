@@ -30,7 +30,7 @@ const recordListPlus = document.getElementById('plus-area');
 let chartLabels = ["サンプルA", "サンプルB", "サンプルC", "サンプルD", "サンプルF"];
 let chartDataList = [47, 25, 10, 65, 52, 89]; // 数値の配列に修正
 
-var ctx = document.getElementById("pieChart").getContext("2d");
+var ctx = document.getElementById("myChart").getContext("2d");
 var myLineChart = new Chart(ctx, {
     type: 'line',
     data: {
