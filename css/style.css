@@ -111,10 +111,9 @@ canvas {
 }
 
 .switch > div {
-    overflow: auto;
     display: none;
     height: auto;
-    max-height: 400px;
+    min-height: 400px;
     width: 100%;
     padding: 1.5em 1em;
     background-color: #fff;
