@@ -28,15 +28,26 @@ body {
 }
 
 .header {
-    background-color: var(--color-light);
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(20px);
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 20px;
     justify-content: space-between;
+    box-shadow: 0 0 16px var(--color-light);
+    width: 100%;
+    z-index: 20;
 }
 
+/* .header .inner {
+    background-color: var(--color-light);
+} */
+
 .header a {
+    font-family: "Kaisei Tokumin", serif;
     text-decoration: none;
 }
 
@@ -74,6 +85,9 @@ body {
     bottom: 0;
 }
 
+.main {
+    margin-top: 100px;
+}
 
 /* 棒グラフ */
 canvas {
