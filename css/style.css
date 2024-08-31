@@ -37,14 +37,10 @@ body {
     align-items: center;
     padding: 20px;
     justify-content: space-between;
-    box-shadow: 0 0 16px var(--color-light);
+    box-shadow: 0 0 16px #eee;
     width: 100%;
     z-index: 20;
 }
-
-/* .header .inner {
-    background-color: var(--color-light);
-} */
 
 .header a {
     font-family: "Kaisei Tokumin", serif;
