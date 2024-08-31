@@ -1,7 +1,8 @@
+// index.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getDatabase, ref, push, set, remove, onChildAdded } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+import { getDatabase, ref, push, set, remove, onChildAdded, onValue } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
 import recording from "./recording.js";
-import makeChart from "./makeChart.js";
+import loadList from "./load.js";
 
 // Firebaseの初期化
 const firebaseConfig = {
@@ -27,8 +28,11 @@ const recordType = document.getElementById('record-type');
 const recordListALL = document.getElementById('all-area');
 const recordListMinus = document.getElementById('minus-area');
 const recordListPlus = document.getElementById('plus-area');
+const clearButtonHtml = '<button class="clear-button"><img src="../images/icon-clear.svg" width="16" height="16" alt="削除ボタン"></button>';
 
-makeChart();
+window.addEventListener('load', () => {
+    loadList(dbRef, recordListALL, recordListMinus, recordListPlus, clearButtonHtml);
+});
 
 // `recordButton` のクリックイベントリスナー
 recordButton.addEventListener('click', () => {
@@ -45,12 +49,17 @@ recordButton.addEventListener('click', () => {
         return;
     }
 
+    // firebaseへ追加
     const newPostRef = push(dbRef);
     set(newPostRef, recordItem);
 
-    // フロントに新しいレコードを表示
-    recording(dbRef, recordListALL, recordListMinus, recordListPlus);
-    makeChart(dbRef);
+    // 既存のアイテムをクリア
+    recordListALL.innerHTML = '';
+    recordListPlus.innerHTML = '';
+    recordListMinus.innerHTML = '';
+
+    // データベースをフロントに表示
+    loadList(dbRef, recordListALL, recordListMinus, recordListPlus, clearButtonHtml);
 
     recordDate.value = '';
     recordTitle.value = '';

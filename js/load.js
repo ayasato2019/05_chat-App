@@ -1,0 +1,46 @@
+// load.js
+import { onValue } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+
+export default function loadList(dbRef, recordListALL, recordListMinus, recordListPlus, clearButtonHtml) {
+    onValue(dbRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+            // 既存のデータをクリア
+            recordListALL.innerHTML = '';
+            recordListPlus.innerHTML = '';
+            recordListMinus.innerHTML = '';
+
+            // データをループして表示
+            for (const [key, recordItem] of Object.entries(data)) {
+                const date = recordItem.data; 
+                const title = recordItem.title;
+                const price = recordItem.price;
+                const type = recordItem.type;
+
+                const newItem = document.createElement('li');
+                const newItemType = document.createElement('li');
+
+                newItem.classList.add('record-item');
+                newItemType.classList.add('record-item');
+
+                newItem.dataset.id = key;
+                newItem.classList.add(`id-${key}`);
+                newItemType.dataset.id = key;
+                newItemType.classList.add(`id-${key}`);
+
+                const jpType = type === "plus" ? "収入" : "支出";
+
+                newItem.innerHTML = `${clearButtonHtml}<span contenteditable="true" class="id-${key}-update">${date}</span><span contenteditable="true" class="item-title id-${key}-update">${title}</span><span contenteditable="true" class="item-price id-${key}-update">${price}円</span>`;
+                newItemType.innerHTML = `${clearButtonHtml} ${jpType} : <span contenteditable="true" class="id-${key}-update">${date}</span><span contenteditable="true" class="item-title id-${key}-update">${title}</span><span contenteditable="true" class="item-price id-${key}-update">${price}円</span>`;
+
+                if (type === "plus") {
+                    recordListPlus.appendChild(newItem);
+                    recordListALL.appendChild(newItemType);
+                } else {
+                    recordListMinus.appendChild(newItem);
+                    recordListALL.appendChild(newItemType);
+                }
+            }
+        }
+    });
+}
