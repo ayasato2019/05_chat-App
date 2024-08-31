@@ -27,34 +27,30 @@ const recordListMinus = document.getElementById('minus-area');
 const recordListPlus = document.getElementById('plus-area');
 
 // Chart の初期化
-let labels = ["サンプルA", "サンプルB", "サンプルC"];
-let dataList = [47, 25, 10]; // 数値の配列に修正
+let chartLabels = ["サンプルA", "サンプルB", "サンプルC", "サンプルD", "サンプルF"];
+let chartDataList = [47, 25, 10, 65, 52, 89]; // 数値の配列に修正
 
 var ctx = document.getElementById("pieChart").getContext("2d");
 var myLineChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: labels, // ラベルの設定
+        labels: chartLabels,
         datasets: [
             {
                 label: "お金の増減表",
-                data: dataList, // データの設定
-                tension: 0.1, // 曲線の緩やかさを設定
-                fill: true, // 塗りつぶし設定
-                borderWidth: 2, // ボーダーの幅を設定
-                borderColor: 'rgba(75, 192, 192, 1)', // ボーダーの色
-                backgroundColor: 'rgba(75, 192, 192, 0.2)' // 背景の色
+                data: chartDataList,
+                tension: 0,
+                fill: true,
+                borderWidth: 2,
+                borderColor: 'rgba(61, 51, 65, 1)',
+                backgroundColor: 'rgba(188, 178, 201, 0.2)'
             }
         ]
     },
     options: {
         scales: {
-            x: {
-                beginAtZero: true // x 軸の設定
-            },
-            y: {
-                beginAtZero: true // y 軸の設定
-            }
+            x: {beginAtZero: true},
+            y: {beginAtZero: true}
         }
     }
 });
